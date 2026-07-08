@@ -58,11 +58,27 @@ h1 {
         padding: 20px;
     }
 
-    h1 {
-        font-size: 38px;
-        line-height: 1.2;
-    }
+   h1 {
+    font-size: 32px;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0 15px;
+}
 
+.countdown {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.time-box {
+    width: 85%;
+    height: 160px;
+}
+
+.time-box .number {
+    font-size: 60px;
+}
     .countdown {
         flex-direction: column;
         gap: 20px;
@@ -82,6 +98,4 @@ h1 {
         font-size: 24px;
     }
 }
-body {
-    border: 10px solid red !important;
-}
+body {    
