@@ -51,4 +51,40 @@ h1 {
 .box p {
     font-size: 25px;
     margin: 10px;
-}
+}/* Для телефонов */
+@media (max-width: 600px) {
+
+  body {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 45px;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .countdown {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .time-box {
+    width: 85%;
+    height: 180px;
+  }
+
+  .time-box .number {
+    font-size: 70px;
+  }
+
+  .time-box .label {
+    font-size: 30px;
+  }
+
+  img {
+    max-width: 80px;
+  }
+}Ь
