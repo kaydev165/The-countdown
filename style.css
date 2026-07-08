@@ -51,7 +51,7 @@ h1 {
 .box p {
     font-size: 25px;
     margin: 10px;
-}/* Для телефонов */
+/* Для телефонов */
 @media (max-width: 600px) {
 
   body {
@@ -87,4 +87,4 @@ h1 {
   img {
     max-width: 80px;
   }
-}Ь
+}
