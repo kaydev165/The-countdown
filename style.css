@@ -1,4 +1,6 @@
-/* ------------------ Общие настройки ------------------ */
+/* =========================
+   Общие настройки
+========================= */
 
 *{
     margin:0;
@@ -7,9 +9,8 @@
 }
 
 body{
-    font-family:"Poppins",sans-serif;
-    min-height:100vh;
-    overflow:hidden;
+
+    font-family:'Poppins',sans-serif;
 
     background:linear-gradient(
         to bottom,
@@ -20,43 +21,45 @@ body{
 
     color:white;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    overflow:hidden;
+
 }
 
-/* ------------------ Контейнер ------------------ */
+/* =========================
+   Контейнер
+========================= */
 
 .container{
 
-    width:95%;
-    max-width:1400px;
+    width:100%;
+    height:100vh;
 
-    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 
-    animation:show 1.5s;
+    animation:fadeIn 1.5s;
 
 }
 
-@keyframes show{
+@keyframes fadeIn{
 
 from{
-
 opacity:0;
 transform:translateY(40px);
-
 }
 
 to{
-
 opacity:1;
 transform:translateY(0);
-
 }
 
 }
 
-/* ------------------ Заголовок ------------------ */
+/* =========================
+   Заголовок
+========================= */
 
 h1{
 
@@ -68,7 +71,9 @@ text-shadow:0 0 20px white;
 
 }
 
-/* ------------------ Таймер ------------------ */
+/* =========================
+   Таймер
+========================= */
 
 .countdown{
 
@@ -82,49 +87,46 @@ gap:25px;
 
 .card{
 
-width:220px;
-
-height:220px;
+width:210px;
+height:210px;
 
 background:rgba(255,255,255,.12);
 
-backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,.25);
+
+backdrop-filter:blur(12px);
 
 border-radius:25px;
 
-border:1px solid rgba(255,255,255,.25);
-
 display:flex;
-
 flex-direction:column;
-
 justify-content:center;
-
 align-items:center;
 
-transition:.4s;
+transition:.35s;
 
-box-shadow:0 15px 40px rgba(0,0,0,.35);
+box-shadow:0 15px 35px rgba(0,0,0,.4);
 
 }
 
 .card:hover{
 
-transform:translateY(-12px);
+transform:translateY(-10px);
 
-box-shadow:0 20px 60px rgba(255,255,255,.2);
+box-shadow:0 20px 45px rgba(255,255,255,.2);
 
 }
 
 .number{
 
-font-size:80px;
-
+font-size:82px;
 font-weight:bold;
+
+transition:.2s;
 
 }
 
-.label{
+.text{
 
 margin-top:10px;
 
@@ -134,28 +136,33 @@ letter-spacing:2px;
 
 }
 
-/* ------------------ Сообщение ------------------ */
+/* =========================
+   Поздравление
+========================= */
 
 #message{
 
-margin-top:45px;
+margin-top:40px;
 
-font-size:40px;
+font-size:38px;
 
 font-weight:bold;
 
-text-shadow:0 0 15px gold;
+color:#ffe600;
+
+text-shadow:0 0 20px gold;
 
 }
 
-/* ------------------ Гирлянда ------------------ */
+/* =========================
+   Гирлянда
+========================= */
 
 .lights{
 
 position:fixed;
 
 top:15px;
-
 left:0;
 
 width:100%;
@@ -171,7 +178,6 @@ z-index:100;
 .lights span{
 
 width:18px;
-
 height:18px;
 
 border-radius:50%;
@@ -189,15 +195,15 @@ box-shadow:0 0 15px red;
 
 .green{
 
-background:#00ff80;
-box-shadow:0 0 15px #00ff80;
+background:#00ff88;
+box-shadow:0 0 15px #00ff88;
 
 }
 
 .blue{
 
-background:#00c3ff;
-box-shadow:0 0 15px #00c3ff;
+background:#00c8ff;
+box-shadow:0 0 15px #00c8ff;
 
 }
 
@@ -224,13 +230,19 @@ opacity:1;
 
 }
 
-/* ------------------ Снег ------------------ */
+/* =========================
+   Снег
+========================= */
 
 .snow{
 
 position:fixed;
 
-inset:0;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
 
 pointer-events:none;
 
@@ -242,7 +254,7 @@ radial-gradient(white 2px,transparent 2px),
 radial-gradient(white 1px,transparent 1px),
 radial-gradient(white 3px,transparent 3px);
 
-background-size:180px 180px;
+background-size:170px 170px;
 
 animation:snow 20s linear infinite;
 
@@ -264,7 +276,9 @@ background-position:0 900px;
 
 }
 
-/* ------------------ Санта ------------------ */
+/* =========================
+   Санта
+========================= */
 
 #santa{
 
@@ -276,9 +290,7 @@ left:-250px;
 
 font-size:60px;
 
-z-index:50;
-
-animation:fly 20s linear infinite;
+animation:fly 15s linear infinite;
 
 }
 
@@ -298,18 +310,18 @@ left:110%;
 
 }
 
-/* ------------------ Фейерверк ------------------ */
+/* =========================
+   Фейерверк
+========================= */
 
 #fireworks{
 
 position:fixed;
 
 top:0;
-
 left:0;
 
 width:100%;
-
 height:100%;
 
 pointer-events:none;
