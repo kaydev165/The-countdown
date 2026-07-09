@@ -1,3 +1,5 @@
+/* ---------- Общие настройки ---------- */
+
 *{
     margin:0;
     padding:0;
@@ -5,150 +7,324 @@
 }
 
 body{
+    font-family:"Poppins",sans-serif;
     min-height:100vh;
-    font-family:Arial,sans-serif;
-    background:linear-gradient(180deg,#00152f,#000);
     color:#fff;
     overflow-x:hidden;
-}
 
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:40px 20px;
-    text-align:center;
-}
+    background:
+    linear-gradient(to bottom,#021024,#062d55,#021024);
 
-h1{
-    font-size:52px;
-    margin-bottom:25px;
-}
-
-.buttons{
     display:flex;
     justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
+    align-items:center;
+}
+
+/* ---------- Контейнер ---------- */
+
+.container{
+
+    width:95%;
+    max-width:1200px;
+
+    text-align:center;
+
+    padding:40px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+
+}
+
+/* ---------- Заголовок ---------- */
+
+h1{
+
+    font-size:52px;
+
     margin-bottom:30px;
+
+}
+
+/* ---------- Кнопки ---------- */
+
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:30px;
+
 }
 
 .buttons button{
-    padding:14px 28px;
+
     border:none;
-    border-radius:12px;
-    background:#0d6efd;
-    color:white;
+
+    border-radius:15px;
+
+    padding:15px 30px;
+
     cursor:pointer;
+
     font-size:18px;
+
+    color:white;
+
+    background:#1565ff;
+
     transition:.3s;
+
 }
 
 .buttons button:hover{
-    background:#0b5ed7;
-    transform:translateY(-3px);
+
+    transform:translateY(-4px);
+
+    background:#004de6;
+
 }
 
+.active{
+
+    background:#00a651!important;
+
+}
+
+/* ---------- Форма ---------- */
+
 .hidden{
+
     display:none;
+
 }
 
 #birthdayForm{
-    margin-bottom:30px;
+
+    margin-bottom:35px;
+
 }
 
 #birthdayInput{
-    padding:12px;
-    border:none;
-    border-radius:10px;
+
+    padding:14px;
+
     font-size:18px;
+
+    border-radius:12px;
+
+    border:none;
+
 }
 
 #saveBirthday{
-    padding:12px 20px;
+
     margin-left:10px;
+
+    padding:14px 20px;
+
     border:none;
-    border-radius:10px;
-    background:#198754;
+
+    border-radius:12px;
+
+    background:#00a651;
+
     color:white;
+
     cursor:pointer;
+
 }
 
+/* ---------- Таймер ---------- */
+
 .countdown{
+
     display:flex;
+
     justify-content:center;
+
     gap:20px;
+
     flex-wrap:wrap;
+
 }
 
 .box{
+
     width:180px;
+
     height:180px;
+
     border-radius:20px;
-    background:rgba(255,255,255,.15);
+
+    background:rgba(255,255,255,.12);
+
     backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,.3);
+
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
+
     align-items:center;
+
     transition:.3s;
+
+    border:1px solid rgba(255,255,255,.15);
+
 }
 
 .box:hover{
+
     transform:translateY(-8px);
+
 }
 
 .box span{
-    font-size:60px;
+
+    font-size:64px;
+
     font-weight:bold;
+
 }
 
 .box p{
+
     margin-top:10px;
+
     font-size:22px;
+
 }
 
+/* ---------- Сообщение ---------- */
+
 #message{
+
     margin-top:35px;
+
     font-size:28px;
+
 }
+
+/* ---------- Снег ---------- */
+
+.snow{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background-image:
+
+    radial-gradient(white 2px,transparent 2px),
+
+    radial-gradient(white 1px,transparent 1px),
+
+    radial-gradient(white 3px,transparent 3px);
+
+    background-size:180px 180px;
+
+    animation:snow 20s linear infinite;
+
+    opacity:.4;
+
+}
+
+@keyframes snow{
+
+    from{
+
+        background-position:0 -300px;
+
+    }
+
+    to{
+
+        background-position:0 900px;
+
+    }
+
+}
+
+/* ---------- Телефон ---------- */
 
 @media(max-width:768px){
 
-    h1{
-        font-size:34px;
-    }
+h1{
 
-    .box{
-        width:140px;
-        height:140px;
-    }
+font-size:34px;
 
-    .box span{
-        font-size:45px;
-    }
+}
 
-    .box p{
-        font-size:18px;
-    }
+.container{
 
-    .buttons{
-        flex-direction:column;
-        align-items:center;
-    }
+padding:25px 15px;
 
-    .buttons button{
-        width:90%;
-        max-width:320px;
-    }
+}
 
-    #birthdayInput{
-        width:90%;
-        margin-bottom:10px;
-    }
+.box{
 
-    #saveBirthday{
-        width:90%;
-        margin-left:0;
-    }
+width:140px;
+
+height:140px;
+
+}
+
+.box span{
+
+font-size:46px;
+
+}
+
+.box p{
+
+font-size:18px;
+
+}
+
+.buttons{
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.buttons button{
+
+width:95%;
+
+}
+
+#birthdayInput{
+
+width:95%;
+
+margin-bottom:10px;
+
+}
+
+#saveBirthday{
+
+margin-left:0;
+
+width:95%;
+
+}
+
 }
