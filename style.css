@@ -1,136 +1,154 @@
-* {
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    background: black;
-    font-family: Arial, sans-serif;
-    color: white;
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(180deg,#00152f,#000);
+    color:#fff;
+    overflow-x:hidden;
 }
 
-
-.container {
-    text-align: center;
-    padding-top: 70px;
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+    text-align:center;
 }
 
-h1 {
-    font-size: 60px;
-    color: white;
-    text-align: center;
+h1{
+    font-size:52px;
+    margin-bottom:25px;
 }
 
-.countdown {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 50px;
-    flex-wrap: wrap;
-}
-
-.box {
-    width: 220px;
-    height: 180px;
-    background: rgba(255, 255, 255, 0.18);
-    border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 20px;
-    backdrop-filter: blur(8px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-.box span {
-    font-size: 80px;
-    font-weight: bold;
-}
-
-.box p {
-    font-size: 25px;
-    margin: 10px;
-/* Для телефонов */
-@media (max-width: 600px) {
-
-    .container {
-        padding: 20px;
-    }
-
-   h1 {
-    font-size: 32px;
-    text-align: center;
-    line-height: 1.2;
-    padding: 0 15px;
-}
-
-.countdown {
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-}
-
-.time-box {
-    width: 85%;
-    height: 160px;
-}
-
-.time-box .number {
-    font-size: 60px;
-}
-    .countdown {
-        flex-direction: column;
-        gap: 20px;
-        margin-top: 30px;
-    }
-
-    .time-box {
-        width: 90%;
-        height: 150px;
-    }
-
-    .time-box .number {
-        font-size: 65px;
-    }
-
-    .time-box .label {
-        font-size: 24px;
-    }
-}
-body {    
-.event-buttons{
+.buttons{
     display:flex;
     justify-content:center;
     gap:15px;
     flex-wrap:wrap;
-    margin:20px 0;
+    margin-bottom:30px;
 }
 
-.event-buttons button{
-    padding:12px 24px;
+.buttons button{
+    padding:14px 28px;
     border:none;
     border-radius:12px;
-    background:#2d7df7;
+    background:#0d6efd;
     color:white;
     cursor:pointer;
     font-size:18px;
     transition:.3s;
 }
 
-.event-buttons button:hover{
-    background:#1d62c9;
-    transform:scale(1.05);
+.buttons button:hover{
+    background:#0b5ed7;
+    transform:translateY(-3px);
+}
+
+.hidden{
+    display:none;
 }
 
 #birthdayForm{
-    text-align:center;
-    margin:20px;
+    margin-bottom:30px;
 }
 
-input[type="date"]{
-    padding:10px;
+#birthdayInput{
+    padding:12px;
+    border:none;
     border-radius:10px;
-    border:1px solid #ccc;
     font-size:18px;
+}
+
+#saveBirthday{
+    padding:12px 20px;
+    margin-left:10px;
+    border:none;
+    border-radius:10px;
+    background:#198754;
+    color:white;
+    cursor:pointer;
+}
+
+.countdown{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.box{
+    width:180px;
+    height:180px;
+    border-radius:20px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.3);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+}
+
+.box:hover{
+    transform:translateY(-8px);
+}
+
+.box span{
+    font-size:60px;
+    font-weight:bold;
+}
+
+.box p{
+    margin-top:10px;
+    font-size:22px;
+}
+
+#message{
+    margin-top:35px;
+    font-size:28px;
+}
+
+@media(max-width:768px){
+
+    h1{
+        font-size:34px;
+    }
+
+    .box{
+        width:140px;
+        height:140px;
+    }
+
+    .box span{
+        font-size:45px;
+    }
+
+    .box p{
+        font-size:18px;
+    }
+
+    .buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .buttons button{
+        width:90%;
+        max-width:320px;
+    }
+
+    #birthdayInput{
+        width:90%;
+        margin-bottom:10px;
+    }
+
+    #saveBirthday{
+        width:90%;
+        margin-left:0;
+    }
 }
