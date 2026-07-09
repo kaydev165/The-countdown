@@ -4,16 +4,11 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>🎄 До Нового года</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -22,9 +17,7 @@
 <body>
 
     <!-- Гирлянда -->
-
     <div class="lights">
-
         <span class="red"></span>
         <span class="yellow"></span>
         <span class="green"></span>
@@ -37,59 +30,38 @@
         <span class="yellow"></span>
         <span class="green"></span>
         <span class="blue"></span>
-
     </div>
 
     <!-- Снег -->
-
     <div class="snow"></div>
 
     <!-- Санта -->
-
-    <div id="santa">
-        🎅🛷
-    </div>
-
-    <!-- Основной блок -->
+    <div id="santa">🎅🛷</div>
 
     <main class="container">
 
-        <h1>
-            🎄 До Нового года осталось 🎄
-        </h1>
+        <h1>🎄 До Нового года осталось 🎄</h1>
 
         <div class="countdown">
 
             <div class="card">
-
-                <div id="days" class="number">0</div>
-
-                <div class="label">ДНЕЙ</div>
-
+                <div class="number" id="days">0</div>
+                <div class="text">Дней</div>
             </div>
 
             <div class="card">
-
-                <div id="hours" class="number">00</div>
-
-                <div class="label">ЧАСОВ</div>
-
+                <div class="number" id="hours">00</div>
+                <div class="text">Часов</div>
             </div>
 
             <div class="card">
-
-                <div id="minutes" class="number">00</div>
-
-                <div class="label">МИНУТ</div>
-
+                <div class="number" id="minutes">00</div>
+                <div class="text">Минут</div>
             </div>
 
             <div class="card">
-
-                <div id="seconds" class="number">00</div>
-
-                <div class="label">СЕКУНД</div>
-
+                <div class="number" id="seconds">00</div>
+                <div class="text">Секунд</div>
             </div>
 
         </div>
@@ -97,8 +69,6 @@
         <h2 id="message"></h2>
 
     </main>
-
-    <!-- Контейнер для фейерверка -->
 
     <canvas id="fireworks"></canvas>
 
