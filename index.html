@@ -8,56 +8,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<div class="snow"></div>
 
-    <div class="snow"></div>
+<div class="container">
 
-    <div class="container">
-        <h1>🎄 До Нового года осталось 🎄</h1>
+    <h1 id="title">🎄 До Нового года осталось</h1>
 
-        <div class="countdown">
-
-            <div class="box">
-                <span id="days">0</span>
-                <p>Дней</p>
-            </div>
-
-            <div class="box">
-                <span id="hours">0</span>
-                <p>Часов</p>
-            </div>
-
-            <div class="box">
-                <span id="minutes">0</span>
-                <p>Минут</p>
-            </div>
-
-            <div class="box">
-                <span id="seconds">0</span>
-                <p>Секунд</p>
-            </div>
-
-        </div>
-
-        <h2 id="message"></h2>
+    <div class="buttons">
+        <button id="newYearBtn">🎄 Новый год</button>
+        <button id="birthdayBtn">🎂 День рождения</button>
     </div>
 
-    <script src="script.js"></script>
+    <div id="birthdayForm" class="hidden">
+        <h3>Введите дату рождения</h3>
 
-</body>
-</html>
-<div class="event-buttons">
-    <button id="birthdayBtn">🎂 День рождения</button>
+        <input type="date" id="birthdayInput">
+
+        <button id="saveBirthday">
+            Сохранить
+        </button>
+    </div>
+
+    <div class="countdown">
+
+        <div class="box">
+            <span id="days">0</span>
+            <p>Дней</p>
+        </div>
+
+        <div class="box">
+            <span id="hours">0</span>
+            <p>Часов</p>
+        </div>
+
+        <div class="box">
+            <span id="minutes">0</span>
+            <p>Минут</p>
+        </div>
+
+        <div class="box">
+            <span id="seconds">0</span>
+            <p>Секунд</p>
+        </div>
+
+    </div>
+
+    <h2 id="message"></h2>
+
 </div>
 
-<div id="birthdayForm" style="display:none;">
-    <h3>Введите дату рождения</h3>
-    <input type="date" id="birthday">
-    <button id="saveBirthday">Сохранить</button>
-</div>
-
-<h2 id="title">До Нового года осталось</h2>
-
-<div id="countdown">
-    <!-- Здесь уже находится ваш таймер -->
-</div>
+<script src="script.js"></script>
