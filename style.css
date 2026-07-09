@@ -99,3 +99,38 @@ h1 {
     }
 }
 body {    
+.event-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin:20px 0;
+}
+
+.event-buttons button{
+    padding:12px 24px;
+    border:none;
+    border-radius:12px;
+    background:#2d7df7;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+.event-buttons button:hover{
+    background:#1d62c9;
+    transform:scale(1.05);
+}
+
+#birthdayForm{
+    text-align:center;
+    margin:20px;
+}
+
+input[type="date"]{
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:18px;
+}
