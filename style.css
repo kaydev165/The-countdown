@@ -1,149 +1,317 @@
-// ===== Получаем элементы =====
+/* ------------------ Общие настройки ------------------ */
 
-const title = document.getElementById("title");
-
-const days = document.getElementById("days");
-const hours = document.getElementById("hours");
-const minutes = document.getElementById("minutes");
-const seconds = document.getElementById("seconds");
-
-const message = document.getElementById("message");
-
-const newYearBtn = document.getElementById("newYearBtn");
-const birthdayBtn = document.getElementById("birthdayBtn");
-
-const birthdayForm = document.getElementById("birthdayForm");
-const birthdayInput = document.getElementById("birthdayInput");
-const saveBirthday = document.getElementById("saveBirthday");
-
-// ===== Режим =====
-
-let mode = "newyear";
-
-// ===== Сохранённая дата =====
-
-const savedBirthday = localStorage.getItem("birthday");
-
-if(savedBirthday){
-    birthdayInput.value = savedBirthday;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-// ===== Кнопки =====
+body{
+    font-family:"Poppins",sans-serif;
+    min-height:100vh;
+    overflow:hidden;
 
-newYearBtn.onclick = () =>{
+    background:linear-gradient(
+        to bottom,
+        #021024,
+        #062d55,
+        #021024
+    );
 
-    mode="newyear";
+    color:white;
 
-    title.textContent="🎄 До Нового года осталось";
-
-    birthdayForm.classList.add("hidden");
-
-    newYearBtn.classList.add("active");
-    birthdayBtn.classList.remove("active");
-
-    message.textContent="";
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-birthdayBtn.onclick=()=>{
+/* ------------------ Контейнер ------------------ */
 
-    mode="birthday";
+.container{
 
-    title.textContent="🎂 До дня рождения осталось";
+    width:95%;
+    max-width:1400px;
 
-    birthdayForm.classList.remove("hidden");
+    text-align:center;
 
-    birthdayBtn.classList.add("active");
-    newYearBtn.classList.remove("active");
+    animation:show 1.5s;
 
 }
 
-saveBirthday.onclick=()=>{
+@keyframes show{
 
-    if(!birthdayInput.value){
+from{
 
-        alert("Выберите дату рождения");
-
-        return;
-
-    }
-
-    localStorage.setItem("birthday",birthdayInput.value);
-
-    alert("Дата сохранена!");
-}
-
-// ===== Таймер =====
-
-function updateCountdown(){
-
-    let target;
-
-    const now=new Date();
-
-    if(mode==="newyear"){
-
-        target=new Date(now.getFullYear()+1,0,1);
-
-    }else{
-
-        const value=localStorage.getItem("birthday");
-
-        if(!value){
-
-            message.textContent="Выберите дату рождения";
-
-            return;
-
-        }
-
-        const birth=new Date(value);
-
-        target=new Date(
-            now.getFullYear(),
-            birth.getMonth(),
-            birth.getDate()
-        );
-
-        if(target<now){
-
-            target.setFullYear(now.getFullYear()+1);
-
-        }
-
-    }
-
-    const diff=target-now;
-
-    const d=Math.floor(diff/(1000*60*60*24));
-
-    const h=Math.floor(diff/(1000*60*60)%24);
-
-    const m=Math.floor(diff/(1000*60)%60);
-
-    const s=Math.floor(diff/1000%60);
-
-    days.textContent=d;
-    hours.textContent=h;
-    minutes.textContent=m;
-    seconds.textContent=s;
-
-    if(diff<=0){
-
-        if(mode==="newyear"){
-
-            message.textContent="🎉 С Новым годом!";
-
-        }else{
-
-            message.textContent="🎂 С Днём рождения!";
-
-        }
-
-    }
+opacity:0;
+transform:translateY(40px);
 
 }
 
-updateCountdown();
+to{
 
-setInterval(updateCountdown,1000);
-    
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* ------------------ Заголовок ------------------ */
+
+h1{
+
+font-size:55px;
+
+margin-bottom:50px;
+
+text-shadow:0 0 20px white;
+
+}
+
+/* ------------------ Таймер ------------------ */
+
+.countdown{
+
+display:flex;
+
+justify-content:center;
+
+gap:25px;
+
+}
+
+.card{
+
+width:220px;
+
+height:220px;
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(14px);
+
+border-radius:25px;
+
+border:1px solid rgba(255,255,255,.25);
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+transition:.4s;
+
+box-shadow:0 15px 40px rgba(0,0,0,.35);
+
+}
+
+.card:hover{
+
+transform:translateY(-12px);
+
+box-shadow:0 20px 60px rgba(255,255,255,.2);
+
+}
+
+.number{
+
+font-size:80px;
+
+font-weight:bold;
+
+}
+
+.label{
+
+margin-top:10px;
+
+font-size:22px;
+
+letter-spacing:2px;
+
+}
+
+/* ------------------ Сообщение ------------------ */
+
+#message{
+
+margin-top:45px;
+
+font-size:40px;
+
+font-weight:bold;
+
+text-shadow:0 0 15px gold;
+
+}
+
+/* ------------------ Гирлянда ------------------ */
+
+.lights{
+
+position:fixed;
+
+top:15px;
+
+left:0;
+
+width:100%;
+
+display:flex;
+
+justify-content:space-evenly;
+
+z-index:100;
+
+}
+
+.lights span{
+
+width:18px;
+
+height:18px;
+
+border-radius:50%;
+
+animation:blink 1s infinite alternate;
+
+}
+
+.red{
+
+background:#ff2d55;
+box-shadow:0 0 15px red;
+
+}
+
+.green{
+
+background:#00ff80;
+box-shadow:0 0 15px #00ff80;
+
+}
+
+.blue{
+
+background:#00c3ff;
+box-shadow:0 0 15px #00c3ff;
+
+}
+
+.yellow{
+
+background:#ffe600;
+box-shadow:0 0 15px yellow;
+
+}
+
+@keyframes blink{
+
+from{
+
+opacity:.3;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+/* ------------------ Снег ------------------ */
+
+.snow{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+opacity:.35;
+
+background-image:
+
+radial-gradient(white 2px,transparent 2px),
+radial-gradient(white 1px,transparent 1px),
+radial-gradient(white 3px,transparent 3px);
+
+background-size:180px 180px;
+
+animation:snow 20s linear infinite;
+
+}
+
+@keyframes snow{
+
+from{
+
+background-position:0 -300px;
+
+}
+
+to{
+
+background-position:0 900px;
+
+}
+
+}
+
+/* ------------------ Санта ------------------ */
+
+#santa{
+
+position:fixed;
+
+top:90px;
+
+left:-250px;
+
+font-size:60px;
+
+z-index:50;
+
+animation:fly 20s linear infinite;
+
+}
+
+@keyframes fly{
+
+0%{
+
+left:-250px;
+
+}
+
+100%{
+
+left:110%;
+
+}
+
+}
+
+/* ------------------ Фейерверк ------------------ */
+
+#fireworks{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+pointer-events:none;
+
+}
