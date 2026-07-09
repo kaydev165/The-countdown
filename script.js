@@ -1,81 +1,42 @@
-const newYear = new Date("January 1, 2027 00:00:00").getTime();
-
+// Получаем элементы таймера
 const days = document.getElementById("days");
 const hours = document.getElementById("hours");
 const minutes = document.getElementById("minutes");
 const seconds = document.getElementById("seconds");
 const message = document.getElementById("message");
 
+// Функция обновления таймера
 function updateCountdown() {
-    const now = new Date().getTime();
-    const difference = newYear - now;
 
+    const now = new Date();
+
+    // Следующий Новый год
+    const nextYear = now.getFullYear() + 1;
+    const targetDate = new Date(nextYear, 0, 1, 0, 0, 0);
+
+    const difference = targetDate - now;
+
+    // Если наступил Новый год
     if (difference <= 0) {
-        message.innerHTML = "🎉 С Новым годом! 🎉";
+        message.textContent = "🎉 С Новым годом! 🎉";
         return;
     }
 
-    days.innerHTML = Math.floor(difference / (1000 * 60 * 60 * 24));
-    hours.innerHTML = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    minutes.innerHTML = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    seconds.innerHTML = Math.floor((difference % (1000 * 60)) / 1000);
+    // Вычисляем время
+    const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const h = Math.floor((difference / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((difference / (1000 * 60)) % 60);
+    const s = Math.floor((difference / 1000) % 60);
+
+    // Выводим на экран
+    days.textContent = d;
+    hours.textContent = String(h).padStart(2, "0");
+    minutes.textContent = String(m).padStart(2, "0");
+    seconds.textContent = String(s).padStart(2, "0");
 }
 
-setInterval(updateCountdown, 1000);
+// Запускаем сразу
 updateCountdown();
-const birthdayInput = document.getElementById("birthday");
 
-document.getElementById("saveBirthday").onclick = () => {
-    localStorage.setItem("birthday", birthdayInput.value);
-    startBirthdayCountdown();
-};
-document.getElementById("newYearBtn").onclick = () => {
-    document.getElementById("birthdayForm").style.display = "none";
-    document.getElementById("title").textContent = "До Нового года осталось";
-    startNewYearCountdown();
-};
-
-document.getElementById("birthdayBtn").onclick = () => {
-    document.getElementById("birthdayForm").style.display = "block";
-    document.getElementById("title").textContent = "До дня рождения осталось";
-
-    if(localStorage.getItem("birthday")){
-        birthdayInput.value = localStorage.getItem("birthday");
-        startBirthdayCountdown();
-    }
-};
-function startBirthdayCountdown(){
-
-    const birthday = localStorage.getItem("birthday");
-
-    if(!birthday) return;
-
-    setInterval(() => {
-
-        const now = new Date();
-
-        let target = new Date(birthday);
-
-        target.setFullYear(now.getFullYear());
-
-        if(target < now){
-            target.setFullYear(now.getFullYear()+1);
-        }
-
-        const diff = target - now;
-
-        const days = Math.floor(diff / (1000*60*60*24));
-        const hours = Math.floor(diff / (1000*60*60)%24);
-        const minutes = Math.floor(diff / (1000*60)%60);
-        const seconds = Math.floor(diff/1000%60);
-
-        document.getElementById("countdown").innerHTML =
-        
-        <h1>${days}</h1>
-        <p>дней</p>
-        <h2>${hours}:${minutes}:${seconds}</h2>
-        ;
-
-    },1000);
-
-}
+// Обновляем каждую секунду
+setInterval(updateCountdown, 1000);
