@@ -23,3 +23,59 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+const birthdayInput = document.getElementById("birthday");
+
+document.getElementById("saveBirthday").onclick = () => {
+    localStorage.setItem("birthday", birthdayInput.value);
+    startBirthdayCountdown();
+};
+document.getElementById("newYearBtn").onclick = () => {
+    document.getElementById("birthdayForm").style.display = "none";
+    document.getElementById("title").textContent = "До Нового года осталось";
+    startNewYearCountdown();
+};
+
+document.getElementById("birthdayBtn").onclick = () => {
+    document.getElementById("birthdayForm").style.display = "block";
+    document.getElementById("title").textContent = "До дня рождения осталось";
+
+    if(localStorage.getItem("birthday")){
+        birthdayInput.value = localStorage.getItem("birthday");
+        startBirthdayCountdown();
+    }
+};
+function startBirthdayCountdown(){
+
+    const birthday = localStorage.getItem("birthday");
+
+    if(!birthday) return;
+
+    setInterval(() => {
+
+        const now = new Date();
+
+        let target = new Date(birthday);
+
+        target.setFullYear(now.getFullYear());
+
+        if(target < now){
+            target.setFullYear(now.getFullYear()+1);
+        }
+
+        const diff = target - now;
+
+        const days = Math.floor(diff / (1000*60*60*24));
+        const hours = Math.floor(diff / (1000*60*60)%24);
+        const minutes = Math.floor(diff / (1000*60)%60);
+        const seconds = Math.floor(diff/1000%60);
+
+        document.getElementById("countdown").innerHTML =
+        
+        <h1>${days}</h1>
+        <p>дней</p>
+        <h2>${hours}:${minutes}:${seconds}</h2>
+        ;
+
+    },1000);
+
+}
