@@ -1,330 +1,149 @@
-/* ---------- Общие настройки ---------- */
+// ===== Получаем элементы =====
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+const title = document.getElementById("title");
+
+const days = document.getElementById("days");
+const hours = document.getElementById("hours");
+const minutes = document.getElementById("minutes");
+const seconds = document.getElementById("seconds");
+
+const message = document.getElementById("message");
+
+const newYearBtn = document.getElementById("newYearBtn");
+const birthdayBtn = document.getElementById("birthdayBtn");
+
+const birthdayForm = document.getElementById("birthdayForm");
+const birthdayInput = document.getElementById("birthdayInput");
+const saveBirthday = document.getElementById("saveBirthday");
+
+// ===== Режим =====
+
+let mode = "newyear";
+
+// ===== Сохранённая дата =====
+
+const savedBirthday = localStorage.getItem("birthday");
+
+if(savedBirthday){
+    birthdayInput.value = savedBirthday;
 }
 
-body{
-    font-family:"Poppins",sans-serif;
-    min-height:100vh;
-    color:#fff;
-    overflow-x:hidden;
+// ===== Кнопки =====
 
-    background:
-    linear-gradient(to bottom,#021024,#062d55,#021024);
+newYearBtn.onclick = () =>{
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    mode="newyear";
+
+    title.textContent="🎄 До Нового года осталось";
+
+    birthdayForm.classList.add("hidden");
+
+    newYearBtn.classList.add("active");
+    birthdayBtn.classList.remove("active");
+
+    message.textContent="";
 }
 
-/* ---------- Контейнер ---------- */
+birthdayBtn.onclick=()=>{
 
-.container{
+    mode="birthday";
 
-    width:95%;
-    max-width:1200px;
+    title.textContent="🎂 До дня рождения осталось";
 
-    text-align:center;
+    birthdayForm.classList.remove("hidden");
 
-    padding:40px;
-
-    background:rgba(255,255,255,.08);
-
-    backdrop-filter:blur(18px);
-
-    border-radius:25px;
-
-    border:1px solid rgba(255,255,255,.15);
-
-    box-shadow:0 20px 50px rgba(0,0,0,.4);
-
-}
-
-/* ---------- Заголовок ---------- */
-
-h1{
-
-    font-size:52px;
-
-    margin-bottom:30px;
-
-}
-
-/* ---------- Кнопки ---------- */
-
-.buttons{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-
-    margin-bottom:30px;
+    birthdayBtn.classList.add("active");
+    newYearBtn.classList.remove("active");
 
 }
 
-.buttons button{
+saveBirthday.onclick=()=>{
 
-    border:none;
+    if(!birthdayInput.value){
 
-    border-radius:15px;
+        alert("Выберите дату рождения");
 
-    padding:15px 30px;
-
-    cursor:pointer;
-
-    font-size:18px;
-
-    color:white;
-
-    background:#1565ff;
-
-    transition:.3s;
-
-}
-
-.buttons button:hover{
-
-    transform:translateY(-4px);
-
-    background:#004de6;
-
-}
-
-.active{
-
-    background:#00a651!important;
-
-}
-
-/* ---------- Форма ---------- */
-
-.hidden{
-
-    display:none;
-
-}
-
-#birthdayForm{
-
-    margin-bottom:35px;
-
-}
-
-#birthdayInput{
-
-    padding:14px;
-
-    font-size:18px;
-
-    border-radius:12px;
-
-    border:none;
-
-}
-
-#saveBirthday{
-
-    margin-left:10px;
-
-    padding:14px 20px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#00a651;
-
-    color:white;
-
-    cursor:pointer;
-
-}
-
-/* ---------- Таймер ---------- */
-
-.countdown{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
-}
-
-.box{
-
-    width:180px;
-
-    height:180px;
-
-    border-radius:20px;
-
-    background:rgba(255,255,255,.12);
-
-    backdrop-filter:blur(10px);
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    transition:.3s;
-
-    border:1px solid rgba(255,255,255,.15);
-
-}
-
-.box:hover{
-
-    transform:translateY(-8px);
-
-}
-
-.box span{
-
-    font-size:64px;
-
-    font-weight:bold;
-
-}
-
-.box p{
-
-    margin-top:10px;
-
-    font-size:22px;
-
-}
-
-/* ---------- Сообщение ---------- */
-
-#message{
-
-    margin-top:35px;
-
-    font-size:28px;
-
-}
-
-/* ---------- Снег ---------- */
-
-.snow{
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    background-image:
-
-    radial-gradient(white 2px,transparent 2px),
-
-    radial-gradient(white 1px,transparent 1px),
-
-    radial-gradient(white 3px,transparent 3px);
-
-    background-size:180px 180px;
-
-    animation:snow 20s linear infinite;
-
-    opacity:.4;
-
-}
-
-@keyframes snow{
-
-    from{
-
-        background-position:0 -300px;
+        return;
 
     }
 
-    to{
+    localStorage.setItem("birthday",birthdayInput.value);
 
-        background-position:0 900px;
+    alert("Дата сохранена!");
+}
+
+// ===== Таймер =====
+
+function updateCountdown(){
+
+    let target;
+
+    const now=new Date();
+
+    if(mode==="newyear"){
+
+        target=new Date(now.getFullYear()+1,0,1);
+
+    }else{
+
+        const value=localStorage.getItem("birthday");
+
+        if(!value){
+
+            message.textContent="Выберите дату рождения";
+
+            return;
+
+        }
+
+        const birth=new Date(value);
+
+        target=new Date(
+            now.getFullYear(),
+            birth.getMonth(),
+            birth.getDate()
+        );
+
+        if(target<now){
+
+            target.setFullYear(now.getFullYear()+1);
+
+        }
+
+    }
+
+    const diff=target-now;
+
+    const d=Math.floor(diff/(1000*60*60*24));
+
+    const h=Math.floor(diff/(1000*60*60)%24);
+
+    const m=Math.floor(diff/(1000*60)%60);
+
+    const s=Math.floor(diff/1000%60);
+
+    days.textContent=d;
+    hours.textContent=h;
+    minutes.textContent=m;
+    seconds.textContent=s;
+
+    if(diff<=0){
+
+        if(mode==="newyear"){
+
+            message.textContent="🎉 С Новым годом!";
+
+        }else{
+
+            message.textContent="🎂 С Днём рождения!";
+
+        }
 
     }
 
 }
 
-/* ---------- Телефон ---------- */
+updateCountdown();
 
-@media(max-width:768px){
-
-h1{
-
-font-size:34px;
-
-}
-
-.container{
-
-padding:25px 15px;
-
-}
-
-.box{
-
-width:140px;
-
-height:140px;
-
-}
-
-.box span{
-
-font-size:46px;
-
-}
-
-.box p{
-
-font-size:18px;
-
-}
-
-.buttons{
-
-flex-direction:column;
-
-align-items:center;
-
-}
-
-.buttons button{
-
-width:95%;
-
-}
-
-#birthdayInput{
-
-width:95%;
-
-margin-bottom:10px;
-
-}
-
-#saveBirthday{
-
-margin-left:0;
-
-width:95%;
-
-}
-
-}
+setInterval(updateCountdown,1000);
+    
